@@ -3,23 +3,26 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Sample Short Description",
+          "summary": "Superhero Guess skill game",
           "examplePhrases": [
-            "Alexa open hello world",
-            "Alexa tell hello world I am Jeff",
-            "Alexa tell hello world my name is Peter"
+            "Alexa open superhero guess",
+            "Alexa open superhero guess game"
           ],
           "name": "superhero-guess",
-          "description": "Sample Full Description"
+          "description": "Superhero guess skill is a game where the we throw a fact about a superhero or villain and user is akes to guess him or her."
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Sample Testing Instructions.",
+      "testingInstructions": "Testing Instructions.",
       "category": "EDUCATION_AND_REFERENCE",
       "distributionCountries": []
     },
     "apis": {
-      "custom": {}
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom"
+        }
+      }
     },
     "manifestVersion": "1.0"
   }

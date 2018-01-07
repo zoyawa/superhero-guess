@@ -1,47 +1,80 @@
 {
-    "interactionModel":{
-        "languageModel":{
-            "invocationName":"hello world",
-            "types":[],
-            "intents":[
-                {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
-                },
-                {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
-                },
-                {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
-                },
-                {
-                    "name":"HelloWorldIntent",
-                    "slots":[
-
-                    ],
-                    "samples":[
-                        "hello",
-                        "say hello",
-                        "say hello world"
-                    ]
-                },
-                {
-                    "name":"MyNameIsIntent",
-                    "slots":[
-                        {
-                            "name":"name",
-                            "type":"AMAZON.US_FIRST_NAME"
-                        }
-                    ],
-                    "samples":[
-                        "my name is {name}",
-                        "i am {name}",
-                        "you can call me {name}"
-                    ]
-                }
-            ]
-        }
-    }
+  "languageModel": {
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "AnswerIntent",
+        "samples": [
+          "{Answer}",
+          "He is {Answer}",
+          "She is {Answer}",
+          "He must be {Answer}",
+          "She must be {Answer}",
+          "I think he is {Answer}",
+          "I think she is {Answer}",
+          "I think he must me {Answer}",
+          "I think she must be {Answer}"
+        ],
+        "slots": [
+          {
+            "name": "Answer",
+            "type": "AMAZON.US_FIRST_NAME"
+          }
+        ]
+      },
+      {
+        "name": "CheckLevelIntent",
+        "samples": [
+          "What level I am at",
+          "What level I am at now",
+          "level"
+        ],
+        "slots": []
+      },
+      {
+        "name": "CheckScoreIntent",
+        "samples": [
+          "What is my current score",
+          "score"
+        ],
+        "slots": []
+      },
+      {
+        "name": "NextFactIntent",
+        "samples": [
+          "Next Fact",
+          "Give me next fact",
+          "Give me another fact"
+        ],
+        "slots": []
+      },
+      {
+        "name": "RepeatFactIntent",
+        "samples": [
+          "Repeat fact",
+          "Please repeat fact"
+        ],
+        "slots": []
+      },
+      {
+        "name": "WhichSuperherosIntent",
+        "samples": [
+          "What are possible superheros"
+        ],
+        "slots": []
+      }
+    ],
+    "invocationName": "superhero guess"
+  }
 }
