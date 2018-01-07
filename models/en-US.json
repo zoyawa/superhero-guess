@@ -3,26 +3,36 @@
     "intents": [
       {
         "name": "AMAZON.CancelIntent",
-        "samples": []
+        "samples": [
+          "Cancel",
+          "Exit"
+        ]
       },
       {
         "name": "AMAZON.HelpIntent",
-        "samples": []
+        "samples": [
+          "Help",
+          "What am i supposed to do"
+        ]
       },
       {
         "name": "AMAZON.StopIntent",
-        "samples": []
+        "samples": [
+          "Stop",
+          "Cancel"
+        ]
       },
       {
         "name": "AnswerIntent",
         "samples": [
-          "{Answer}",
           "He is {Answer}",
           "She is {Answer}",
           "He must be {Answer}",
           "She must be {Answer}",
           "I think he is {Answer}",
           "I think she is {Answer}",
+          "I guess he is {Answer}",
+          "I guess she is {Answer}",
           "I think he must me {Answer}",
           "I think she must be {Answer}"
         ],
@@ -75,6 +85,6 @@
         "slots": []
       }
     ],
-    "invocationName": "superhero guess"
+    "invocationName": "open superhero guess"
   }
 }

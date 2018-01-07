@@ -72,16 +72,22 @@ const handlers = {
     this.attributes['level'] = 1;
     this.attributes['facts'] = allFacts(this.attributes['level']);
     this.attributes['score'] = 0;
+    delete this.attributes['question'];
 
     this.response.speak(ABOUT).listen(PROMPT_ASK_NEXTFACT);
     this.emit(':responseReady');
   },
   'NextFactIntent': function () {
-    const facts = this.attributes['facts'];
+    if (this.attributes['question']) {
+      this.emit('RepeatFactIntent');
+      return;
+    }
+    
+    let facts = this.attributes['facts'];
     let level = this.attributes['level'] | 1;
 
     if (facts.length === 0) {
-      this.attributes['facts'] = allFacts(++level);
+      facts = this.attributes['facts'] = allFacts(++level);
       this.attributes['level'] = level;
     }
     const question = getRandomFact(facts);
@@ -89,8 +95,8 @@ const handlers = {
       this.attributes['question'] = question;
       this.response.speak(question.fact).listen(PROMPT_ASK_ANSWER);
     } else {
-      if (level === maxLevel()) {
-        this.response.speak(GAME_OVER).speak(GOODBYE);
+      if (level > maxLevel()) {
+        this.response.speak(GAME_OVER).listen(GOODBYE);
       }
     }
 
