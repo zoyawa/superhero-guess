@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Spiderman",
+    "fact": "He became super-human after he was bit by a spider.",
+    "level": 1
+  },
+  {
+    "name": "Spiderman",
+    "fact": "His name is Peter Parker.",
+    "level": 2
+  },
+  {
+    "name": "Superman",
+    "fact": "He can fly.",
+    "level": 1
+  },
+  {
+    "name": "Superman",
+    "fact": "He wears red and blue clothes.",
+    "level": 1
+  },
+  {
+    "name": "Superman",
+    "fact": "He can fire laser with his eyes.",
+    "level": 2
+  },
+  {
+    "name": "Superman",
+    "fact": "He wears his underwear over his pants.",
+    "level": 3
+  }
+]

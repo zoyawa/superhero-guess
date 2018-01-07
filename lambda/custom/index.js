@@ -4,41 +4,9 @@
 'use strict';
 
 const Alexa = require('alexa-sdk');
+const FACTS = require('./facts.json');
 
-const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
-
-const FACTS = [
-  {
-    'name': 'Spiderman',
-    'fact': 'He became super-human after he was bit by a spider.',
-    'level': 1
-  },
-  {
-    'name': 'Spiderman',
-    'fact': 'His name is Peter Parker.',
-    'level': 2
-  },
-  {
-    'name': 'Superman',
-    'fact': 'He can fly.',
-    'level': 1
-  },
-  {
-    'name': 'Superman',
-    'fact': 'He wears red and blue clothes.',
-    'level': 1
-  },
-  {
-    'name': 'Superman',
-    'fact': 'He can fire laser with his eyes.',
-    'level': 2
-  },
-  {
-    'name': 'Superman',
-    'fact': 'He wears his underwear over his pants.',
-    'level': 3
-  }
-];
+const APP_ID = 'amzn1.ask.skill.4347353f-5bbe-4b1f-8b38-33f82ca4620b';
 
 let isMatchingNames = function(a, b) {
   return a.toUpperCase() === b.toUpperCase();
@@ -69,7 +37,7 @@ let allSuperheros = function(facts) {
   return Object.keys(mapSuperheros);
 }
 
-let maxLevel = function(level, name) {
+let maxLevel = function() {
   let max = 1;
   FACTS.forEach(function(fact) {
     if (fact.level > max) {
@@ -93,6 +61,7 @@ let checkAnswer = function(fact, answer) {
 const ABOUT = 'Welcome to Superhero Guess Alexa Skill. \
 The game skill tells a fact and you have to guess for which superhero or villain, this fact is true.';
 const HELP = ABOUT;
+const GAME_OVER = 'Well done, you have finshed the game.';
 const GOODBYE = 'Thanks for playing Superhero Guess. Goodbye!';
 const PROMPT_ASK_NEXTFACT = "Ask me give me a fact to guess by saying: next fact."
 const PROMPT_ASK_ANSWER = "Who do you think he/she is?";
@@ -108,12 +77,23 @@ const handlers = {
     this.emit(':responseReady');
   },
   'NextFactIntent': function () {
-    this.attributes['question'] = getRandomFact(this.attributes['facts']);
-    if (!this.attributes['question']) {
-      this.attributes['level'] = ++ this.attributes['level'];
+    const facts = this.attributes['facts'];
+    let level = this.attributes['level'] | 1;
+
+    if (facts.length === 0) {
+      this.attributes['facts'] = allFacts(++level);
+      this.attributes['level'] = level;
+    }
+    const question = getRandomFact(facts);
+    if (question) {
+      this.attributes['question'] = question;
+      this.response.speak(question.fact).listen(PROMPT_ASK_ANSWER);
+    } else {
+      if (level === maxLevel()) {
+        this.response.speak(GAME_OVER).speak(GOODBYE);
+      }
     }
 
-    this.response.speak(this.attributes['question'].fact).listen(PROMPT_ASK_ANSWER);
     this.emit(':responseReady');
   },
   'AnswerIntent': function () {
