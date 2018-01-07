@@ -84,7 +84,7 @@ const handlers = {
     }
     
     let facts = this.attributes['facts'];
-    let level = this.attributes['level'] | 1;
+    let level = this.attributes['level'];
 
     if (facts.length === 0) {
       facts = this.attributes['facts'] = allFacts(++level);
