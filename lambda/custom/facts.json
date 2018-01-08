@@ -6,9 +6,26 @@
   },
   {
     "name": "Spiderman",
-    "fact": "His name is Peter Parker.",
+    "fact": "He helps people in New York City.",
     "level": 2
   },
+  {
+    "name": "Spiderman",
+    "fact": "His name is Peter Parker.",
+    "level": 3
+  },
+  {
+    "name": "Spiderman",
+    "fact": "He lives with his aunt April.",
+    "level": 4
+  },
+  {
+    "name": "Spiderman",
+    "fact": "His girlfriend died from her neck snapping by falling down from Clock tower.",
+    "level": 5
+  },
+
+
   {
     "name": "Superman",
     "fact": "He can fly.",
@@ -21,12 +38,91 @@
   },
   {
     "name": "Superman",
+    "fact": "He wears his underwear over his pants.",
+    "level": 1
+  },
+  {
+    "name": "Superman",
     "fact": "He can fire laser with his eyes.",
     "level": 2
   },
   {
     "name": "Superman",
-    "fact": "He wears his underwear over his pants.",
+    "fact": "His name is Clark Kent.",
     "level": 3
+  },
+  {
+    "name": "Superman",
+    "fact": "He lives in the Fortress of Solitude.",
+    "level": 4
+  },
+  {
+    "name": "Superman",
+    "fact": "His cousin's name is Kara Zor-El.",
+    "level": 5
+  },
+
+
+  {
+    "name": "Batman",
+    "fact": "He wears a bat suit.",
+    "level": 1
+  },
+  {
+    "name": "Batman",
+    "fact": "He drives the Batmobile.",
+    "level": 2
+  },
+  {
+    "name": "Batman",
+    "fact": "He helps people in Gotham City.",
+    "level": 2
+  },
+  {
+    "name": "Batman",
+    "fact": "His name is Bruce Wayne.",
+    "level": 3
+  },
+  {
+    "name": "Batman",
+    "fact": "He lives at Wayne Manor.",
+    "level": 4
+  },
+  {
+    "name": "Batman",
+    "fact": "His butler's name is Alfred.",
+    "level": 5
+  },
+
+
+  {
+    "name": "Wonder woman",
+    "fact": "She fights with The Lasso of Thruth.",
+    "level": 1
+  },
+  {
+    "name": "Wonder woman",
+    "fact": "She has a shield and crown.",
+    "level": 2
+  },
+  {
+    "name": "Wonder woman",
+    "fact": "She is a member of Justice League",
+    "level": 2
+  },
+  {
+    "name": "Wonder woman",
+    "fact": "Her name is Diana Prince.",
+    "level": 3
+  },
+  {
+    "name": "Wonder woman",
+    "fact": "She grew up on the Island of Amazon.",
+    "level": 4
+  },
+  {
+    "name": "Wonder woman",
+    "fact": "Her creator also invented an early lie detector test.",
+    "level": 5
   }
 ]
