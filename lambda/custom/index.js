@@ -58,9 +58,9 @@ let checkAnswer = function(fact, answer) {
   return isMatchingNames(fact.name, answer);
 }
 
-const ABOUT = 'Welcome to playing Superhero Guess. \
-It is an Alexa game skill, which asks facts about superheros and you guess who they are.';
-const HELP = ABOUT;
+const ABOUT = 'Welcome to playing Superhero Guess.';
+const HELP = 'It is an Alexa game skill, which tells facts about superhero. \
+And you guess which superhero the fact is related to.';
 const GAME_OVER = 'Well done, you have finshed the game.';
 const GOODBYE = 'Thanks for playing Superhero Guess. Goodbye!';
 const PROMPT_ASK_NEXTFACT = "Say \'Next Fact\' to begin."
@@ -74,9 +74,9 @@ const handlers = {
     this.attributes['score'] = 0;
     delete this.attributes['question'];
 
-    //this.response.speak(ABOUT + ' ' + PROMPT_ASK_NEXTFACT);
-    this.emit(':ask', ABOUT + ' ' + PROMPT_ASK_NEXTFACT);
+    this.emit(':ask', ABOUT + ' ' + HELP + ' ' + PROMPT_ASK_NEXTFACT);
   },
+
   'NextFactIntent': function (prefix) {
     let message = prefix ? prefix + '. The next fact is: ' : '';
     
@@ -95,15 +95,14 @@ const handlers = {
     const question = getRandomFact(facts);
     if (question) {
       this.attributes['question'] = question;
-      this.response.speak(message + question.fact).listen(PROMPT_ASK_ANSWER);
+      this.emit(':ask', message + question.fact + ' ' + PROMPT_ASK_ANSWER);
     } else {
       if (level > maxLevel()) {
-        this.response.speak(GAME_OVER).listen(GOODBYE);
+        this.emit(':tell', GAME_OVER + ' ' + GOODBYE);
       }
     }
-
-    this.emit(':responseReady');
   },
+
   'AnswerIntent': function () {
     const firstName = this.event.request.intent.slots.FirstName.value;
     const lastName = this.event.request.intent.slots.LastName.value;
@@ -114,8 +113,6 @@ const handlers = {
     if (lastName) {
       answer += ' ' + lastName;
     }
-    console.log('$$$$" ' + answer);
-    
     
     if (!answer) {
       this.emit('Unhandled');
@@ -125,54 +122,52 @@ const handlers = {
     if (checkAnswer(this.attributes['question'], answer)) {
       this.attributes['score'] = ++ this.attributes['score'];
       delete this.attributes['question'];
-      //this.response.speak(answer + ' is correct answer.').listen(PROMPT_ASK_NEXTFACT);
       this.emit('NextFactIntent', answer + ' is correct answer.');
     } else {
-      this.response.speak(answer + ' is incorrect answer.').listen(PROMPT_ASK_ANSWER);
-      this.emit(':responseReady');
+      this.emit(':ask', answer + ' is incorrect answer. ' + PROMPT_ASK_ANSWER);
     }
   },
+
   'RepeatFactIntent': function () {
     const question = this.attributes['question'];
     if (question) {
-      this.response.speak(question.fact).listen(PROMPT_ASK_ANSWER);
+      this.emit(':ask', question.fact + ' ' + PROMPT_ASK_ANSWER);
     } else {
-      this.response.listen(PROMPT_ASK_NEXTFACT);
+      this.emit('NextFactIntent');
     }
-
-    this.emit(':responseReady');
   },  
+
   'CheckLevelIntent': function () {
     const prompt = this.attributes['question'] ? PROMPT_ASK_ANSWER : PROMPT_ASK_NEXTFACT;
-    this.response.speak('You are at level: ' + this.attributes['level'] + ' in this game.').listen(prompt);
-    this.emit(':responseReady');
+    this.emit(':ask', 'You are at level: ' + this.attributes['level'] + ' in this game. ' + prompt);
   },
+
   'CheckScoreIntent': function () {
     const prompt = this.attributes['question'] ? PROMPT_ASK_ANSWER : PROMPT_ASK_NEXTFACT;
-    this.response.speak('Your score is ' + this.attributes['score'] + ' in this game.').listen(prompt);
-    this.emit(':responseReady');
+    this.emit(':ask', 'Your score is ' + this.attributes['score'] + ' in this game. ' + prompt);
   },
+
   'GiveClueIntent': function () {
     let names = allSuperheros(this.attributes['facts'].concat(this.attributes['question']));
-    this.response.speak('You have to pick one superhero from the list containing: ' + names.join(', ')).listen(PROMPT_ASK_ANSWER);
-    this.emit(':responseReady');
+    this.emit(':ask', 'Answer cab be any of: ' + names.join(', ') + '. ' + PROMPT_ASK_ANSWER);
   },
+
   'AMAZON.HelpIntent': function () {
     const prompt = this.attributes['question'] ? PROMPT_ASK_ANSWER : PROMPT_ASK_NEXTFACT;
-    this.response.speak(HELP).listen(prompt);
-    this.emit(':responseReady');
+    this.emit(':ask', HELP + ' ' + prompt);
   },
+
   'AMAZON.CancelIntent': function () {
-    this.response.speak(GOODBYE);
+    this.emit(':tell', GOODBYE);
     this.emit(':responseReady');
   },
+
   'AMAZON.StopIntent': function () {
-    this.response.speak(GOODBYE);
-    this.emit(':responseReady');
+    this.emit(':tell', GOODBYE);
   },
+
   "Unhandled": function() {
-    this.response.speak(UNKNOWN_ERROR).listen(PROMPT_ASK_NEXTFACT);
-    this.emit(':responseReady');
+    this.emit(':ask', UNKNOWN_ERROR + ' ' + PROMPT_ASK_NEXTFACT);
   }
 };
 
