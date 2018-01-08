@@ -25,20 +25,18 @@
       {
         "name": "AnswerIntent",
         "samples": [
-          "He is {Answer}",
-          "She is {Answer}",
-          "He must be {Answer}",
-          "She must be {Answer}",
-          "I think he is {Answer}",
-          "I think she is {Answer}",
-          "I guess he is {Answer}",
-          "I guess she is {Answer}",
-          "I think he must me {Answer}",
-          "I think she must be {Answer}"
+          "He is {FirstName} {LastName}",
+          "She is {FirstName} {LastName}",
+          "He is {FirstName}",
+          "She is {FirstName}"
         ],
         "slots": [
           {
-            "name": "Answer",
+            "name": "FirstName",
+            "type": "AMAZON.US_FIRST_NAME"
+          },
+          {
+            "name": "LastName",
             "type": "AMAZON.US_FIRST_NAME"
           }
         ]
@@ -46,9 +44,10 @@
       {
         "name": "CheckLevelIntent",
         "samples": [
-          "What level I am at",
-          "What level I am at now",
-          "level"
+          "What level am I at now",
+          "What level am I at",
+          "Which level am I at",
+          "Which level am I at now"
         ],
         "slots": []
       },
@@ -56,7 +55,14 @@
         "name": "CheckScoreIntent",
         "samples": [
           "What is my current score",
-          "score"
+          "What is my game score now"
+        ],
+        "slots": []
+      },
+      {
+        "name": "GiveClueIntent",
+        "samples": [
+          "Give me a clue"
         ],
         "slots": []
       },
@@ -74,13 +80,6 @@
         "samples": [
           "Repeat fact",
           "Please repeat fact"
-        ],
-        "slots": []
-      },
-      {
-        "name": "WhichSuperherosIntent",
-        "samples": [
-          "What are possible superheros"
         ],
         "slots": []
       }
