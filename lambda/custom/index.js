@@ -60,7 +60,8 @@ let checkAnswer = function(fact, answer) {
 
 const ABOUT = 'Welcome to playing Superhero Guess.';
 const HELP = 'It is an Alexa game skill, which tells facts about superhero. \
-And you guess which superhero the fact is related to.';
+And you guess which superhero the fact is related to. \
+Answer response should be like: He is Spiderman or She is wonder woman.';
 const GAME_OVER = 'Well done, you have finshed the game.';
 const GOODBYE = 'Thanks for playing Superhero Guess. Goodbye!';
 const PROMPT_ASK_NEXTFACT = "Say \'Next Fact\' to begin."
@@ -78,7 +79,7 @@ const handlers = {
   },
 
   'NextFactIntent': function (prefix) {
-    let message = prefix ? prefix + '. The next fact is: ' : '';
+    let message = prefix ? prefix : '';
     
     if (this.attributes['question']) {
       this.emit('RepeatFactIntent');
@@ -91,7 +92,15 @@ const handlers = {
     if (facts.length === 0) {
       facts = this.attributes['facts'] = allFacts(++level);
       this.attributes['level'] = level;
+      if (level <= maxLevel()) {
+        message += '. Now you are playing at level: ' + level;
+      }
     }
+    
+    if (prefix) {
+      message += '. The next fact is: ';
+    }
+    
     const question = getRandomFact(facts);
     if (question) {
       this.attributes['question'] = question;
@@ -149,7 +158,7 @@ const handlers = {
 
   'GiveClueIntent': function () {
     let names = allSuperheros(this.attributes['facts'].concat(this.attributes['question']));
-    this.emit(':ask', 'Answer cab be any of: ' + names.join(', ') + '. ' + PROMPT_ASK_ANSWER);
+    this.emit(':ask', 'The answer could be any of these: ' + names.join(', ') + '. ' + PROMPT_ASK_ANSWER);
   },
 
   'AMAZON.HelpIntent': function () {

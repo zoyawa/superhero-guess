@@ -25,6 +25,8 @@
       {
         "name": "AnswerIntent",
         "samples": [
+          "It is {FirstName} {LastName}",
+          "It is {FirstName}",
           "He is {FirstName} {LastName}",
           "She is {FirstName} {LastName}",
           "He is {FirstName}",
@@ -55,7 +57,7 @@
         "name": "CheckScoreIntent",
         "samples": [
           "What is my current score",
-          "What is my game score now"
+          "What is my score now"
         ],
         "slots": []
       },
