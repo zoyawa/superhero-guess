@@ -64,7 +64,9 @@
       {
         "name": "GiveClueIntent",
         "samples": [
-          "Give me a clue"
+          "Please provide me me a clue",
+          "Please suggest me possible superheroes",
+          "Please suggest me possible superheroes here"
         ],
         "slots": []
       },
@@ -73,7 +75,9 @@
         "samples": [
           "Next Fact",
           "Give me next fact",
-          "Give me another fact"
+          "Give me another fact",
+          "Please give me next fact",
+          "Please give me another fact"
         ],
         "slots": []
       },
@@ -81,7 +85,8 @@
         "name": "RepeatFactIntent",
         "samples": [
           "Repeat fact",
-          "Please repeat fact"
+          "Please repeat the fact",
+          "Please repeat the current fact"
         ],
         "slots": []
       }

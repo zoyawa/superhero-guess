@@ -176,7 +176,8 @@ const handlers = {
   },
 
   "Unhandled": function() {
-    this.emit(':ask', UNKNOWN_ERROR + ' ' + PROMPT_ASK_NEXTFACT);
+    const prompt = this.attributes['question'] ? PROMPT_ASK_ANSWER : PROMPT_ASK_NEXTFACT;
+    this.emit(':ask', UNKNOWN_ERROR + ' ' + prompt);
   }
 };
 
