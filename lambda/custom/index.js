@@ -59,13 +59,13 @@ let checkAnswer = function(fact, answer) {
 }
 
 const ABOUT = 'Welcome to playing Superhero Guess.';
-const HELP = 'It is an Alexa game skill, which tells facts about superhero. \
-And you guess which superhero the fact is related to. \
-Answer response should be like: He is Spiderman or She is wonder woman.';
+const HELP = 'The Superhero Guess is an Alexa game skill, \
+which tells facts about superheroes, \
+and you guess which superhero the current fact is about.';
 const GAME_OVER = 'Well done, you have finshed the game.';
 const GOODBYE = 'Thanks for playing Superhero Guess. Goodbye!';
 const PROMPT_ASK_NEXTFACT = "Say \'Next Fact\' to begin."
-const PROMPT_ASK_ANSWER = "Who do you think he or she is?";
+const PROMPT_ASK_ANSWER = "Which superhero do you think the fact is about?";
 const UNKNOWN_ERROR = "Something went wrong.";
 
 const handlers = {
@@ -162,8 +162,14 @@ const handlers = {
   },
 
   'AMAZON.HelpIntent': function () {
-    const prompt = this.attributes['question'] ? PROMPT_ASK_ANSWER : PROMPT_ASK_NEXTFACT;
-    this.emit(':ask', HELP + ' ' + prompt);
+    let message = HELP;
+    const question = this.attributes['question'];
+    if (question) {
+      message += ' The current fact is: ' + question.fact + ' ' + PROMPT_ASK_ANSWER;
+    } else {
+      message += ' ' + PROMPT_ASK_NEXTFACT;
+    }
+    this.emit(':ask', message);
   },
 
   'AMAZON.CancelIntent': function () {

@@ -11,8 +11,7 @@
       {
         "name": "AMAZON.HelpIntent",
         "samples": [
-          "Help",
-          "What am i supposed to do"
+          "Help"
         ]
       },
       {
@@ -25,12 +24,8 @@
       {
         "name": "AnswerIntent",
         "samples": [
-          "It is {FirstName} {LastName}",
-          "It is {FirstName}",
-          "He is {FirstName} {LastName}",
-          "She is {FirstName} {LastName}",
-          "He is {FirstName}",
-          "She is {FirstName}"
+          "{FirstName} {LastName}",
+          "{FirstName}"
         ],
         "slots": [
           {
@@ -44,40 +39,11 @@
         ]
       },
       {
-        "name": "CheckLevelIntent",
-        "samples": [
-          "What level am I at now",
-          "What level am I at",
-          "Which level am I at",
-          "Which level am I at now"
-        ],
-        "slots": []
-      },
-      {
-        "name": "CheckScoreIntent",
-        "samples": [
-          "What is my current score",
-          "What is my score now"
-        ],
-        "slots": []
-      },
-      {
-        "name": "GiveClueIntent",
-        "samples": [
-          "Please provide me me a clue",
-          "Please suggest me possible superheroes",
-          "Please suggest me possible superheroes here"
-        ],
-        "slots": []
-      },
-      {
         "name": "NextFactIntent",
         "samples": [
           "Next Fact",
-          "Give me next fact",
-          "Give me another fact",
-          "Please give me next fact",
-          "Please give me another fact"
+          "Give me the next fact",
+          "Please give me the next fact"
         ],
         "slots": []
       },
@@ -85,7 +51,7 @@
         "name": "RepeatFactIntent",
         "samples": [
           "Repeat fact",
-          "Please repeat the fact",
+          "Repeat the current fact",
           "Please repeat the current fact"
         ],
         "slots": []
