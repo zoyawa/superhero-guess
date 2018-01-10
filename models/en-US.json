@@ -16,8 +16,22 @@
       {
         "name": "AnswerIntent",
         "samples": [
+          "{FirstName}",
           "{FirstName} {LastName}",
-          "{FirstName}"
+          "It is {FirstName}",
+          "It is {FirstName} {LastName}",
+          "He is {FirstName}",
+          "He is {FirstName} {LastName}",
+          "She is {FirstName}",
+          "She is {FirstName} {LastName}",
+          "He must be {FirstName}",
+          "He must be {FirstName} {LastName}",
+          "She must be {FirstName}",
+          "She must be {FirstName} {LastName}",
+          "I think he is {FirstName}",
+          "I think he is {FirstName} {LastName}",
+          "I think she is {FirstName}",
+          "I think she is {FirstName} {LastName}"
         ],
         "slots": [
           {
@@ -31,11 +45,46 @@
         ]
       },
       {
+        "name": "CheckLevelIntent",
+        "samples": [
+          "What level am I at",
+          "Which level am I at",
+          "What level am I at now",
+          "Which level am I at now",
+          "What level I'm playing at",
+          "What level I'm playing at now"
+        ],
+        "slots": []
+      },
+      {
+        "name": "CheckScoreIntent",
+        "samples": [
+          "What is my score now",
+          "What is my current score"
+        ],
+        "slots": []
+      },
+      {
+        "name": "GiveClueIntent",
+        "samples": [
+          "Clue please",
+          "Give me a clue",
+          "Suggest me a clue",
+          "Please give me a clue",
+          "Please provide me a clue",
+          "Please suggest me possible superheroes",
+          "Please suggest me possible superheroes here"
+        ],
+        "slots": []
+      },
+      {
         "name": "NextFactIntent",
         "samples": [
           "Next Fact",
-          "Give me the next fact",
-          "Please give me the next fact"
+          "Give me next fact",
+          "Give me another fact",
+          "Please give me next fact",
+          "Please give me another fact"
         ],
         "slots": []
       },
@@ -43,7 +92,8 @@
         "name": "RepeatFactIntent",
         "samples": [
           "Repeat fact",
-          "Repeat the current fact",
+          "Repeat current fact",
+          "Please repeat the fact",
           "Please repeat the current fact"
         ],
         "slots": []

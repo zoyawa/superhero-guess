@@ -93,7 +93,7 @@ const handlers = {
       facts = this.attributes['facts'] = allFacts(++level);
       this.attributes['level'] = level;
       if (level <= maxLevel()) {
-        message += '. Now you are playing at level: ' + level;
+        message += '. Your current score is: ' + this.attributes['score'] + '. Now you are playing at level: ' + level;
       }
     }
     
@@ -131,9 +131,9 @@ const handlers = {
     if (checkAnswer(this.attributes['question'], answer)) {
       this.attributes['score'] = ++ this.attributes['score'];
       delete this.attributes['question'];
-      this.emit('NextFactIntent', answer + ' is correct answer.');
+      this.emit('NextFactIntent', 'Great, ' + answer + ' is correct.');
     } else {
-      this.emit(':ask', answer + ' is incorrect answer. ' + PROMPT_ASK_ANSWER);
+      this.emit(':ask', 'Oops, ' + answer + ' is incorrect. ' + PROMPT_ASK_ANSWER);
     }
   },
 
