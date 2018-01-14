@@ -59,9 +59,7 @@ let checkAnswer = function(fact, answer) {
 }
 
 const ABOUT = 'Welcome to playing Superhero Guess.';
-const HELP = 'The Superhero Guess is an Alexa game skill, \
-which tells facts about superheroes, \
-and you guess which superhero the current fact is about.';
+const HELP = 'Here, Alexa tells you a superhero fact, and you guess which superhero the fact is about.';
 const GAME_OVER = 'Well done, you have finshed the game.';
 const GOODBYE = 'Thanks for playing Superhero Guess. Goodbye!';
 const PROMPT_ASK_NEXTFACT = "Say \'Next Fact\' to begin."
@@ -127,7 +125,7 @@ const handlers = {
       this.emit('Unhandled');
       return;
     }
-    
+
     if (checkAnswer(this.attributes['question'], answer)) {
       this.attributes['score'] = ++ this.attributes['score'];
       delete this.attributes['question'];
@@ -157,7 +155,22 @@ const handlers = {
   },
 
   'GiveClueIntent': function () {
-    let names = allSuperheros(this.attributes['facts'].concat(this.attributes['question']));
+    let facts = [];
+
+    if (this.attributes['question']) {
+      facts = facts.concat(this.attributes['question']);
+    }
+
+    if (facts.length === 0) {
+      this.emit(':ask', 'To being please ' + PROMPT_ASK_NEXTFACT);
+      return;
+    }
+
+    if (this.attributes['facts']) {
+      facts = facts.concat(this.attributes['facts']);
+    }
+
+    let names = allSuperheros(facts);
     this.emit(':ask', 'The answer could be any of these: ' + names.join(', ') + '. ' + PROMPT_ASK_ANSWER);
   },
 
